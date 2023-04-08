@@ -1,0 +1,111 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+	char A[3][3]={{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+	int a,b;
+	for(a=0;a<3;a++)
+	{	for(b=0;b<3;b++)
+		{
+			printf("%2c",A[a][b]);
+		}
+		printf("\n");
+	} 
+	printf("玩家1為O,玩家2為X\n請輸入位置1~9\n");
+	start: 
+	printf("玩家1回合\n");
+	scanf("%d",&a);
+	a=a-1;
+	if(A[a/3][a%3]==('X')||A[a/3][a%3]==('O')) 
+	{
+		printf("錯誤位置!!\n");
+		goto start;
+	}
+	A[a/3][a%3]='O';
+	for(a=0;a<3;a++)
+	{	for(b=0;b<3;b++)
+		{
+			printf("%2c",A[a][b]);
+		}
+		printf("\n");
+	} 
+		printf("\n\n");
+	for(a=0;a<3;a++)
+		{
+		if((A[a][0]&A[a][1]&A[a][2])=='O') 
+		{
+			printf("玩家1勝利A");
+			return 0;
+		}
+			else if((A[0][a]&A[1][a]&A[2][a])=='O')
+			{
+				printf("玩家1勝利A");
+				return 0;
+			}
+				else if((A[1][1]&A[2][2]&A[0][0])=='O')
+				{
+					printf("玩家1勝利B");
+					return 0;
+				}
+					else if((A[0][2]&A[1][1]&A[2][0])=='O')
+					{
+						printf("玩家1勝利C");
+						return 0;
+			 		} 
+			 		} 
+		int h,F=0;
+		for(a=0;a<3;a++)
+		{for(h=0;h<3;h++)
+		{
+			if(A[a][h]==('X')||A[a][h]==('O'))
+			{
+				F++;
+				if(F==9)
+				{
+					printf("平局遊戲結束\n");
+					return 0;
+				} 
+			}
+		}}
+		
+		
+	start2:
+	srand(time(NULL));
+	a=(rand() % 10) +1;
+	a=a-1;
+	if(A[a/3][a%3]==('X')||A[a/3][a%3]==('O')) 
+	{
+		goto start2;
+	}
+	A[a/3][a%3]='X';
+	for(a=0;a<3;a++)
+	{	for(b=0;b<3;b++)
+		{
+			printf("%2c",A[a][b]);
+		}
+		printf("\n");
+	} 
+	for(a=0;a<3;a++)
+		if((A[a][0]&A[a][1]&A[a][2])=='X') 
+		{
+			printf("玩家2勝利");
+			return 0;
+		}
+			else if((A[0][a]&A[1][a]&A[2][a])=='X')
+			{
+				printf("玩家2勝利");
+				return 0;
+			}
+				else if((A[1][1]&A[2][2]&A[0][0])=='X')
+				{
+					printf("玩家2勝利");
+					return 0;
+				}
+					else if((A[0][2]&A[1][1]&A[2][0])=='X')
+					{
+						printf("玩家2勝利");
+						return 0;
+			 		}
+	goto start;} 
